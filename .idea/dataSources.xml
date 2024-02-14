@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="menu" uuid="78f7296b-61ab-4c35-a236-cbab4a4ed583">
+    <data-source source="LOCAL" name="menu.db" uuid="c85594fe-4f63-448b-83c8-b4572ac22b18">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Ethan Joshua\PycharmProjects\srmfoodsapp\menu.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/menu.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

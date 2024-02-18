@@ -2,16 +2,21 @@ from dependencies import *
 
 
 def butt_func(item):
-    st.session_state.total_items += 1
+    if 'total_items' not in st.session_state:
+        st.session_state.total_items = 0
 
+    if item not in st.session_state:
+        st.session_state[item] = 0
+
+    st.session_state.total_items += 1
     st.session_state[item] += 1
+
     st.sidebar.write(st.session_state[item])
     st.sidebar.write(item)
 
 
 def app():
-    p = 0
-    q = 10000
+
     st.markdown("""
                 <style>
                 .st-emotion-cache-1v0mbdj > img{
@@ -36,11 +41,10 @@ def app():
                 st.subheader(i[1])
                 st.image(i[2], width=400)
                 st.header(f"Price : {i[3]}")
-            st.button("Add to Cart", key=p, type="primary", use_container_width=True,
-                      on_click=lambda: butt_func(i[0]))
+            st.button("Add to Cart", key=f"button_{i[0]}", type="primary", use_container_width=True,
+                      on_click=lambda item=i[0]: butt_func(item))
 
             st.markdown("###")
-            p += 1
 
     with c2:
         for i in foods[2:]:
@@ -51,12 +55,10 @@ def app():
                 st.subheader(i[1])
                 st.image(i[2], width=400)
                 st.header(f"Price : {i[3]}")
-            st.button("Add to Cart", key=q, type="primary", use_container_width=True,
-                      on_click=lambda: butt_func(i[0]))
-
+            st.button("Add to Cart", key=f"button_{i[0]}", type="primary", use_container_width=True,
+                      on_click=lambda item=i[0]: butt_func(item))
             st.markdown("###")
-            q += 1
 
-    if 'total_items' not in st.session_state:
-        st.session_state.total_items = 0
+
+    # print("\n")
 

@@ -15,6 +15,17 @@ class Database:
         # print(data)
         return data
 
+    def add_data(self, data):
+        cursor = self.connection.cursor()
+        cursor.execute("INSERT INTO nonveg VALUES (?,?,?,?)", data)
+        self.connection.commit()
+        cursor.close()
+
+    def get_price(self, name):
+        cursor = self.connection.cursor()
+        cursor.execute(f"SELECT price FROM nonveg WHERE name = '{name}'")
+        data = cursor.fetchall()
+        return int(data[0][0][:-2])
 
 def custom_title(pos, size, color, title, align="center"):
     if pos == "side":
@@ -29,3 +40,17 @@ def custom_title(pos, size, color, title, align="center"):
 """,
                     unsafe_allow_html=True)
 
+
+"""d = Database()
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+price = tuple(df["price"])
+name = tuple(df["name"])
+img = tuple(df["image"])
+desc = tuple(df["description"])
+print(name, price, desc)
+
+for i in range(len(df)):
+    d.add_data((name[i], desc[i], img[i], str(price[i])))
+"""

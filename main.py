@@ -1,5 +1,5 @@
 from dependencies import *
-import nonveg
+import nonveg, veg
 st.set_page_config(page_title="SRM-Goodfoods", page_icon="🍔", layout="wide")
 
 option = option_menu(
@@ -14,8 +14,7 @@ if option == "Non-Vegetarian":
     nonveg.app()
 
 if option == "Vegetarian":
-    pass
-    # nonveg.app()
+    veg.app()
 
 if option == "Snacks":
     pass
@@ -29,7 +28,7 @@ if option == "Home":
 with st.sidebar:
 
     # with st.empty():
-    custom_title("s", 35,"black", "Cart 🛒", "center")
+    custom_title("s", 35, "black", "Cart 🛒", "center")
     c1, c2 = st.columns([3, 1])
     c1.write(":red[Items]")
     c2.write(":red[Total]")

@@ -17,7 +17,7 @@ class Database:
 
     def add_data(self, data):
         cursor = self.connection.cursor()
-        cursor.execute("INSERT INTO nonveg VALUES (?,?,?,?)", data)
+        cursor.execute("INSERT INTO veg VALUES (?,?,?,?)", data)
         self.connection.commit()
         cursor.close()
 
@@ -26,6 +26,21 @@ class Database:
         cursor.execute(f"SELECT price FROM nonveg WHERE name = '{name}'")
         data = cursor.fetchall()
         return int(data[0][0][:-2])
+
+
+def butt_func(item):
+    if 'total_items' not in st.session_state:
+        st.session_state.total_items = 0
+
+    if item not in st.session_state:
+        st.session_state[item] = 0
+
+    st.session_state.total_items += 1
+    st.session_state[item] += 1
+
+    st.sidebar.write(st.session_state[item])
+    st.sidebar.write(item)
+
 
 def custom_title(pos, size, color, title, align="center"):
     if pos == "side":
@@ -41,10 +56,10 @@ def custom_title(pos, size, color, title, align="center"):
                     unsafe_allow_html=True)
 
 
-"""d = Database()
+d = Database()
 import pandas as pd
 
-df = pd.read_csv("data.csv")
+df = pd.read_csv("new.csv")
 price = tuple(df["price"])
 name = tuple(df["name"])
 img = tuple(df["image"])
@@ -53,4 +68,4 @@ print(name, price, desc)
 
 for i in range(len(df)):
     d.add_data((name[i], desc[i], img[i], str(price[i])))
-"""
+

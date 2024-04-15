@@ -1,20 +1,6 @@
 from dependencies import *
 
 
-def butt_func(item):
-    if 'total_items' not in st.session_state:
-        st.session_state.total_items = 0
-
-    if item not in st.session_state:
-        st.session_state[item] = 0
-
-    st.session_state.total_items += 1
-    st.session_state[item] += 1
-
-    st.sidebar.write(st.session_state[item])
-    st.sidebar.write(item)
-
-
 def app():
 
     st.markdown("""
